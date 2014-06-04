@@ -33,17 +33,28 @@
         </br>
         </br>
         </br>
-        <form class="centered" method="post" action="#">
+
+    <div id="login" class="centered" >
+        <form method="post" action="#">
             <h3> User Name </h3>
-            <input type="text" name="Username">
+            <input class="username" type="text" name="Username" placeholder="Username or email">
             </br>
-            </br>
-            <h3> Password </h3>
-            <input type="text" name="Password">
+            <input class="password" type="text" name="Password" placeholder="Password">
             </br>
             </br>
             <input type="submit" value="Login">
         </form>
+        </br>
+        </br>
+        </br>
+        </br>
+        </br>
+        </br>
+        </br>
+        </br>
+        </br>
+        </br>
+    </div>
 
 
     <!-- End content-->
