@@ -1,5 +1,7 @@
 package edu.gatech.cs2340.trip.model;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import javax.security.auth.login.AccountException;
 import java.sql.*;
 
@@ -15,7 +17,9 @@ public class SqlliteAccountDAO implements AccountDAO {
             dbConnection.setAutoCommit(false);
             String createAccountTableQuery = "CREATE TABLE IF NOT EXISTS accounts"
                     + "  (name TEXT,"
-                    + "   passwordHash TEXT)";
+                    + "   email TEXT,"
+                    + "   passwordHash TEXT"
+                    + "   tripData TEXT)";
             Statement sqlStatement = dbConnection.createStatement();
             sqlStatement.execute(createAccountTableQuery);
         } catch (Exception e) {
@@ -33,7 +37,8 @@ public class SqlliteAccountDAO implements AccountDAO {
             ResultSet accountQueryResults = preparedSelectStatement.executeQuery();
             if (accountQueryResults.next()) {
                 return new Account(accountQueryResults.getString("name"), accountQueryResults.getString("email"),
-                        accountQueryResults.getString("passwordHash"));
+                        accountQueryResults.getString("passwordHash"),
+                        accountQueryResults.getString("tripData"));
             }
         } catch (Exception e) {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
@@ -49,13 +54,14 @@ public class SqlliteAccountDAO implements AccountDAO {
 
     @Override
     public boolean insertAccount(Account newAccount) throws AccountException {
-        String insertUserStatement = "INSERT INTO accounts (name, email, password) "
-                                    + "VALUES (?, ?, ?);";
+        String insertUserStatement = "INSERT INTO accounts (name, email, password, tripData) "
+                                    + "VALUES (?, ?, ?, ?);";
         try {
             PreparedStatement preparedInsertStatement = dbConnection.prepareStatement(insertUserStatement);
             preparedInsertStatement.setString(1, newAccount.getName());
             preparedInsertStatement.setString(2, newAccount.getEmail());
             preparedInsertStatement.setString(3, newAccount.getPasswordHash());
+            preparedInsertStatement.setString(4, newAccount.getTripData().getAsString());
             preparedInsertStatement.executeUpdate();
             preparedInsertStatement.close();
             dbConnection.commit();
