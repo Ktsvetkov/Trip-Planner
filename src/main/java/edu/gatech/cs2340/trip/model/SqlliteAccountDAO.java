@@ -32,7 +32,7 @@ public class SqlliteAccountDAO implements AccountDAO {
             preparedSelectStatement.setString(1, accountName);
             ResultSet accountQueryResults = preparedSelectStatement.executeQuery();
             if (accountQueryResults.next()) {
-                return new Account(accountQueryResults.getString("name"),
+                return new Account(accountQueryResults.getString("name"), accountQueryResults.getString("email"),
                         accountQueryResults.getString("passwordHash"));
             }
         } catch (Exception e) {
@@ -49,12 +49,13 @@ public class SqlliteAccountDAO implements AccountDAO {
 
     @Override
     public boolean insertAccount(Account newAccount) throws AccountException {
-        String insertUserStatement = "INSERT INTO accounts (name, passwordHash) "
-                                    + "VALUES (?, ?);";
+        String insertUserStatement = "INSERT INTO accounts (name, email, password) "
+                                    + "VALUES (?, ?, ?);";
         try {
             PreparedStatement preparedInsertStatement = dbConnection.prepareStatement(insertUserStatement);
-            preparedInsertStatement.setString(1, newAccount.getAccountName());
-            preparedInsertStatement.setString(2, newAccount.getAccountPasswordHash());
+            preparedInsertStatement.setString(1, newAccount.getName());
+            preparedInsertStatement.setString(2, newAccount.getEmail());
+            preparedInsertStatement.setString(3, newAccount.getPasswordHash());
             preparedInsertStatement.executeUpdate();
             preparedInsertStatement.close();
             dbConnection.commit();

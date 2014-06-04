@@ -1,31 +1,58 @@
 package edu.gatech.cs2340.trip.model;
 
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
+
 /**
  * Created by dheavern on 6/3/14.
+ * Edited by Kamen Tsvetkov on 6/4/14.
  */
 public class Account {
-    private String accountName;
-    private String accountPasswordHash;
+    private String name;
+    private String email;
+    private String passwordHash;
 
-    public Account(String accountName, String accountPasswordHash) {
-        this.accountName = accountName;
-        this.accountPasswordHash = accountPasswordHash;
+    public Account(String name, String email, String password) {
+        this.name = name;
+        this.passwordHash = hashPassword(password);
     }
 
-    public String getAccountName() {
-        return accountName;
+    public String getName() {
+        return name;
     }
 
-    public String getAccountPasswordHash() {
-        return accountPasswordHash;
+    public String getEmail() {
+        return email;
     }
 
-    public void setAccountPass(String accountPasswordHash) {
-        this.accountPasswordHash = accountPasswordHash;
+    public String getPasswordHash() {
+        return passwordHash;
+    }
+
+    public void setPassword(String password) {
+        try {
+            this.passwordHash = PasswordHash.createHash(password);
+        } catch (NoSuchAlgorithmException e) {
+            System.out.println("Error Hashing");
+        } catch (InvalidKeySpecException e) {
+            System.out.println("Error Hashing");
+        }
+    }
+
+    private String hashPassword(String password) {
+        try {
+            return PasswordHash.createHash(password);
+        } catch (NoSuchAlgorithmException e) {
+            System.out.println("Error Hashing");
+            return null;
+        } catch (InvalidKeySpecException e) {
+            System.out.println("Error Hashing");
+            return null;
+        }
     }
 
     @Override
     public String toString() {
-        return accountName + "  :  " + accountPasswordHash;
+        return name + "  :  " + passwordHash;
     }
 }
