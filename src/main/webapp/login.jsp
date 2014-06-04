@@ -14,7 +14,7 @@
         <ul>
             <li><a href="#">Register</a></li>
             <li><a href="#">FAQs</a></li>
-            <li><a href="#">Contact</a></li>
+            <li style="background-color: #fff" ><a href="#"><font color="#c00">Contact</font></a></li>
             <li><a href="#">Login</a></li>
             <li>
                 <form id="tfnewsearch" method="get" action="#">
@@ -33,7 +33,7 @@
         </br>
         </br>
         </br>
-        <form class="centered" method="post" action="register">
+        <form class="centered" method="post" action="#">
             <h3> User Name </h3>
             <input type="text" name="Username">
             </br>
