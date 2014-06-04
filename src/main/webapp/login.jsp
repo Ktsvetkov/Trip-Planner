@@ -28,7 +28,11 @@
 
 
     <!-- Start content-->
-
+        </br>
+        </br>
+        </br>
+        </br>
+        </br>
         <form method="post" action="register">
             <input type="text" name="accountname">
             <input type="text" name="password">

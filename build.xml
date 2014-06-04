@@ -61,6 +61,36 @@
         </copy>
     </target>
 
+
+    <target name="refresh">
+
+        <!-- clean -->
+        <delete dir="${build.home}"/>
+        <delete dir="${catalina.home}/webapps/${app.name}"/>
+
+        <!-- compile -->
+        <mkdir dir="${build.home}/WEB-INF/classes"/>
+        <javac srcdir="${src.main}/java"
+               destdir="${build.home}/WEB-INF/classes">
+            <classpath refid="compile.classpath"/>
+        </javac>
+
+        <!-- prepare -->
+        <copy todir="${build.home}">
+            <fileset dir="${src.main}/webapp"/>
+        </copy>
+        <copy todir="${build.home}/WEB-INF/lib">
+            <fileset dir="lib"/>
+        </copy>
+
+        <!-- deploy -->
+        <mkdir dir="${catalina.home}/webapps/${app.name}"/>
+
+        <copy todir="${catalina.home}/webapps/${app.name}">
+            <fileset dir="${build.home}"/>
+        </copy>
+    </target>
+
     <!--
     <target name="compile-tests" depends="compile" description="Compile tests">
 
