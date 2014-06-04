@@ -33,20 +33,18 @@
         </br>
         </br>
         </br>
-        <form method="post" action="register">
-            <input type="text" name="accountname">
-            <input type="text" name="password">
-            <input type="submit" value="register">
+        <form class="centered" method="post" action="register">
+            <h3> User Name </h3>
+            <input type="text" name="Username">
+            </br>
+            </br>
+            <h3> Password </h3>
+            <input type="text" name="Password">
+            </br>
+            </br>
+            <input type="submit" value="Login">
         </form>
 
-        </br>
-
-        <form method="post" action="find">
-            <input type="text" name="accountname">
-            <input type="submit" value="find">
-        </form>
-
-        <%= request.getAttribute("test") %>
 
     <!-- End content-->
 
