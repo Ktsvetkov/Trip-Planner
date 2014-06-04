@@ -14,6 +14,7 @@ public class Account {
 
     public Account(String name, String email, String password) {
         this.name = name;
+        this.email = email;
         this.passwordHash = hashPassword(password);
     }
 
