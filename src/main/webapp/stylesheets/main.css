@@ -103,6 +103,14 @@ border-right: 1px solid #ccc; }
     text-align:center;
 }
 
+.leftAligned {
+    text-align:left;
+}
+
+.rightAligned {
+    text-align:right;
+}
+
 .password {
     width: 100px;
 }

@@ -39,13 +39,13 @@
             <input class="username" type="text" name="Username" placeholder="Username or email">
             </br>
             <input class="password" type="text" name="Password" placeholder="Password">
-
-        </br>
-        </br>
-
+            </br>
+            <input type="submit" value="login">
+            </br>
+        </form>
     </div>
 
-    <div id="signup" class="centered" >
+    <div id="signup" class="rightAligned" >
         <form method="post" action="#">
             <h3>Sign Up</h3>
             <input class="username" type="text" name="Email" placeholder="Email">
