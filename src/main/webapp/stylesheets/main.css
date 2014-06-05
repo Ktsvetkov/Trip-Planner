@@ -1,6 +1,103 @@
 body {
-    background-color:gray;
+    background-color: #ffedcc;
+    background: url("../images/background.png") no-repeat center center fixed;
+    background-size:cover;
 }
+
+#nav {
+    width: 100%;
+    height: 35px;
+    height: 40px;
+    float: left;
+    margin: 0;
+    padding: 0;
+    background-color: #e59400;
+    background-color: #49311c;
+    border-bottom: 1px solid #ccc;
+    border-radius: 7px 7px 7px 7px;
+}
+
+#nav ul {
+    list-style: none;
+    width: 590px;
+    width: 508px;
+    margin: 0 auto;
+    padding: 0; }
+
+
+#nav li {
+    float: left; }
+
+
+#nav li a {
+    display: block;
+    padding: 8px 30px;
+    text-decoration: none;
+    font-weight: bold;
+    padding-top: 6px;
+    padding-top: 12px;
+    font-size: 12px;
+    height: 21px;
+    color: #069;
+    border-right: 1px solid #ccc; }
+
+
+#nav li:first-child a {
+    border-left: 1px solid #ccc; }
+
+
+#nav li:last-child{
+border-right: 1px solid #ccc; }
+
+#nav li a:hover {
+    color: #c00;
+    background-color: #fff; }
+
+
+#nav li form {
+        padding-left: 5px;
+        padding-right: 5px;
+        padding-top: 1px;
+    height: 15px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 9px;
+    padding-bottom: 0;
+}
+
+#login {
+    width: 400;
+    height: 500px;
+    background-color: #b0c4de;
+    float:left;
+    padding-top: 5%;
+    padding-left: 7%;
+    padding-right: 10%;
+    width: 25%;
+    height: 35%;
+    background-color: #fff;
+    border-right: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    border-radius: 7px 7px 7px 7px;
+}
+
+#signup {
+    float:right;
+    padding-top: 5%;
+    padding-left: 17%;
+    padding-right: 15%;
+    width: 25%;
+    height: 35%;
+    background-color: #fff;
+    border-right: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    border-radius: 7px 7px 7px 7px;
+}
+
 
 .centered {
     text-align:center;
@@ -14,41 +111,6 @@ body {
     text-align:right;
 }
 
-#nav {
-    width: 100%;
-    height: 50px;
-    float: left;
-    margin: 0;
-    padding: 0;
-    background-color: #f2f2f2;
-    border-bottom: 1px solid #ccc;  }
-#nav ul {
-    list-style: none;
-    width: 1000px;
-    margin: 0 auto;
-    padding: 0; }
-#nav li {
-    float: left; }
-#nav li a {
-    display: block;
-    padding: 8px 30px;
-    text-decoration: none;
-    font-weight: bold;
-    padding-top: 6px;
-    font-size: 12px;
-    height: 11px;
-    color: #069;
-    border-left: 1px solid #ccc;
-    border-right: 1px solid #ccc; }
-
-#nav li form {
-        border-right: 1px solid #ccc; }
+.password {
+    width: 100px;
 }
-
-
-#nav li:first-child a {
-    height: 11px;
-    border-left: 1px solid #ccc; }
-#nav li a:hover {
-    color: #c00;
-    background-color: #fff; }
