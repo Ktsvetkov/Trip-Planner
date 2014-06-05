@@ -26,23 +26,27 @@
 
     <!-- End tool bar-->
 
-
     <!-- Start content-->
         </br>
         </br>
         </br>
         </br>
         </br>
-        <form class="centered" method="post" action="register">
+        <form class="centered" method="post" action="login">
             <h3> User Name </h3>
             <input type="text" name="Username">
             </br>
             </br>
             <h3> Password </h3>
-            <input type="text" name="Password">
+            <input type="password" name="Password">
             </br>
             </br>
             <input type="submit" value="Login">
+        </form>
+        <%= request.getAttribute("error") %>
+
+        <form class="centered" method="post" action="register">
+        <input type="submit" value="make test account">
         </form>
 
 

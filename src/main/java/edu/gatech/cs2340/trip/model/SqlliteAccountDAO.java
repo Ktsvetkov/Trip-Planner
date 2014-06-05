@@ -13,12 +13,12 @@ public class SqlliteAccountDAO implements AccountDAO {
     public SqlliteAccountDAO() {
         try {
             Class.forName("org.sqlite.JDBC");
-            dbConnection = DriverManager.getConnection("jdbc:sqlite:/../databases/Accounts.db");
+            dbConnection = DriverManager.getConnection("jdbc:sqlite:Accounts.db");
             dbConnection.setAutoCommit(false);
             String createAccountTableQuery = "CREATE TABLE IF NOT EXISTS accounts"
                     + "  (name TEXT,"
                     + "   email TEXT,"
-                    + "   passwordHash TEXT"
+                    + "   passwordHash TEXT,"
                     + "   tripData TEXT)";
             Statement sqlStatement = dbConnection.createStatement();
             sqlStatement.execute(createAccountTableQuery);
@@ -68,20 +68,24 @@ public class SqlliteAccountDAO implements AccountDAO {
 
     @Override
     public boolean insertAccount(Account newAccount) throws AccountException {
-        String insertUserStatement = "INSERT INTO Accounts (name, email, password, tripData) "
+        String insertUserStatement = "INSERT INTO Accounts (name, email, passwordHash, tripData) "
                                     + "VALUES (?, ?, ?, ?);";
         try {
             PreparedStatement preparedInsertStatement = dbConnection.prepareStatement(insertUserStatement);
             preparedInsertStatement.setString(1, newAccount.getName());
             preparedInsertStatement.setString(2, newAccount.getEmail());
             preparedInsertStatement.setString(3, newAccount.getPasswordHash());
-            preparedInsertStatement.setString(4, newAccount.getTripData().getAsString());
+            try {
+                preparedInsertStatement.setString(4, newAccount.getTripData().toString());
+            } catch (Exception e) {
+                System.out.println("HERE2");
+            }
             preparedInsertStatement.executeUpdate();
             preparedInsertStatement.close();
             dbConnection.commit();
             return true;
         } catch (Exception e) {
-            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            System.err.println(e.getClass().getName() + ": " + e.getMessage() );
             System.exit(0);
         }
         return false;
@@ -89,7 +93,7 @@ public class SqlliteAccountDAO implements AccountDAO {
 
     @Override
     public boolean updateAccount(Account updatedAccount) throws AccountException {
-        String updateUserStatement = "UPDATE Accounts SET email = ?, password = ?, tripData = ?" +
+        String updateUserStatement = "UPDATE Accounts SET email = ?, passwordHash = ?, tripData = ?" +
                                      "WHERE name = ?";
         try {
             PreparedStatement preparedUpdateStatement = dbConnection.prepareStatement(updateUserStatement);

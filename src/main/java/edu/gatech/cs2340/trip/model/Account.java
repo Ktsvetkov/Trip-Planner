@@ -19,7 +19,11 @@ public class Account {
     public Account(String name, String email, String password) {
         this.name = name;
         this.email = email;
-        this.tripData = new JsonObject();
+        try {
+            this.tripData = new JsonObject();
+        } catch (Exception e) {
+            System.out.println("here1");
+        }
         setPassword(password);
     }
 
@@ -28,8 +32,12 @@ public class Account {
         this.name = name;
         this.email = email;
         this.passwordHash = passwordHash;
-        JsonParser tripDataParser = new JsonParser();
-        this.tripData = tripDataParser.parse(tripData).getAsJsonObject();
+        if (tripData == null) {
+            this.tripData = new JsonObject();
+        } else {
+            JsonParser tripDataParser = new JsonParser();
+            this.tripData = tripDataParser.parse(tripData).getAsJsonObject();
+        }
     }
 
     public String getName() {
