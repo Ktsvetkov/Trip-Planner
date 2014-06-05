@@ -1,5 +1,8 @@
 package edu.gatech.cs2340.trip.model;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 
@@ -11,11 +14,30 @@ public class Account {
     private String name;
     private String email;
     private String passwordHash;
+    private JsonObject tripData;
 
     public Account(String name, String email, String password) {
         this.name = name;
         this.email = email;
-        this.passwordHash = hashPassword(password);
+        try {
+            this.tripData = new JsonObject();
+        } catch (Exception e) {
+            System.out.println("here1");
+        }
+        setPassword(password);
+    }
+
+    //Note the password is pre-hashed
+    public Account(String name, String email,  String passwordHash, String tripData) {
+        this.name = name;
+        this.email = email;
+        this.passwordHash = passwordHash;
+        if (tripData == null) {
+            this.tripData = new JsonObject();
+        } else {
+            JsonParser tripDataParser = new JsonParser();
+            this.tripData = tripDataParser.parse(tripData).getAsJsonObject();
+        }
     }
 
     public String getName() {
@@ -40,20 +62,16 @@ public class Account {
         }
     }
 
-    private String hashPassword(String password) {
-        try {
-            return PasswordHash.createHash(password);
-        } catch (NoSuchAlgorithmException e) {
-            System.out.println("Error Hashing");
-            return null;
-        } catch (InvalidKeySpecException e) {
-            System.out.println("Error Hashing");
-            return null;
-        }
+    public JsonObject getTripData() {
+        return tripData;
+    }
+
+    public void setTripData(JsonObject tripData) {
+        this.tripData = tripData;
     }
 
     @Override
     public String toString() {
-        return name + "  :  " + passwordHash;
+        return name + ":" + passwordHash;
     }
 }

@@ -3,11 +3,12 @@ package edu.gatech.cs2340.trip.controller;
 /**
  * Created by dheavern on 6/3/14.
  */
-import edu.gatech.cs2340.trip.model.Account;
-import edu.gatech.cs2340.trip.model.AccountDAO;
-import edu.gatech.cs2340.trip.model.SqlliteAccountDAO;
+import edu.gatech.cs2340.trip.model.*;
 
 import java.io.IOException;
+import javax.security.auth.login.AccountException;
+import javax.security.auth.login.AccountNotFoundException;
+import javax.security.auth.login.LoginContext;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,9 +17,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(urlPatterns =
-        {"/accounts",
-         "/register",
-         "/find"
+        {"/login",
+         "/register"
         })
 public class AccountManagementServlet extends HttpServlet {
     private AccountDAO acd = new SqlliteAccountDAO();
@@ -27,22 +27,15 @@ public class AccountManagementServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request,
                           HttpServletResponse response)
         throws IOException, ServletException {
-        String result;
-
-        /*if (request.getRequestURI() == "/trip/register") {
-            Account acc = new Account(request.getParameter("accountname"), request.getParameter("password"));
-            try {
-                acd.insertAccount(acc);
-                request.setAttribute("test", "Made Account");
-            } catch (Exception e) {
-                request.setAttribute("test", "Didnt make account");
-            }
-        } else if (request.getRequestURI() == "/trip/find") {
-
-        }*/
-        RequestDispatcher dispatcher =
-                getServletContext().getRequestDispatcher("/accounts.jsp");
-        dispatcher.forward(request, response);
+        if (request.getRequestURI().equals("/trip/login")) {
+            handleLogin(request, response);
+        } else if(request.getRequestURI().equals("/trip/register")) {
+            handleRegistration(request, response);
+        } else {
+            RequestDispatcher dispatcher =
+                    getServletContext().getRequestDispatcher("/accounts.jsp");
+            dispatcher.forward(request, response);
+        }
     }
 
     @Override
@@ -51,7 +44,7 @@ public class AccountManagementServlet extends HttpServlet {
             throws IOException, ServletException {
         request.setAttribute("test", "Asdas");
         RequestDispatcher dispatcher =
-                getServletContext().getRequestDispatcher("/accounts.jsp");
+                getServletContext().getRequestDispatcher("/login.jsp");
         dispatcher.forward(request,response);
     }
 
@@ -63,5 +56,32 @@ public class AccountManagementServlet extends HttpServlet {
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         return;
+    }
+
+    private void handleLogin(HttpServletRequest req, HttpServletResponse resp)
+        throws IOException, ServletException {
+        String name = (String) req.getAttribute("Username");
+        String password = (String) req.getAttribute("Password");
+        Account userAccount;
+        try {
+            userAccount = LoginManager.attemptLogin(name, password);
+            req.getSession().setAttribute("account", userAccount);
+            req.setAttribute("error", "You are now logged in ");
+        } catch (AccountNotFoundException e) {
+            req.setAttribute("error", "This account does not exist");
+        } catch (AccountException e) {
+            req.setAttribute("error", "The credentials supplied do not match");
+        }
+
+        getServletContext().getRequestDispatcher("/login.jsp").forward(req,resp);
+    }
+
+    private void handleRegistration(HttpServletRequest req, HttpServletResponse resp)
+            throws IOException, ServletException {
+        try {
+            RegistrationManager.registerAccount("test", "test", "test", "test");
+        } catch (Exception e) {
+
+        }
     }
 }

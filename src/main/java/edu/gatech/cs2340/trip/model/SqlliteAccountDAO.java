@@ -1,5 +1,7 @@
 package edu.gatech.cs2340.trip.model;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import javax.security.auth.login.AccountException;
 import java.sql.*;
 
@@ -15,9 +17,12 @@ public class SqlliteAccountDAO implements AccountDAO {
             dbConnection.setAutoCommit(false);
             String createAccountTableQuery = "CREATE TABLE IF NOT EXISTS accounts"
                     + "  (name TEXT,"
-                    + "   passwordHash TEXT)";
+                    + "   email TEXT,"
+                    + "   passwordHash TEXT,"
+                    + "   tripData TEXT)";
             Statement sqlStatement = dbConnection.createStatement();
             sqlStatement.execute(createAccountTableQuery);
+            dbConnection.commit();
         } catch (Exception e) {
         }
         System.out.println("Opened database successfully");
@@ -33,7 +38,8 @@ public class SqlliteAccountDAO implements AccountDAO {
             ResultSet accountQueryResults = preparedSelectStatement.executeQuery();
             if (accountQueryResults.next()) {
                 return new Account(accountQueryResults.getString("name"), accountQueryResults.getString("email"),
-                        accountQueryResults.getString("passwordHash"));
+                        accountQueryResults.getString("passwordHash"),
+                        accountQueryResults.getString("tripData"));
             }
         } catch (Exception e) {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
@@ -44,24 +50,42 @@ public class SqlliteAccountDAO implements AccountDAO {
 
     @Override
     public boolean deleteAccount(Account accountToDelete) throws AccountException {
-        return false;
+        String deleteStatement = "DELETE FROM Accounts WHERE name =? AND email = ? AND password = ?";
+        try {
+            PreparedStatement preparedDeleteStatement = dbConnection.prepareStatement(deleteStatement);
+            preparedDeleteStatement.setString(1, accountToDelete.getName());
+            preparedDeleteStatement.setString(2, accountToDelete.getEmail());
+            preparedDeleteStatement.setString(3, accountToDelete.getPasswordHash());
+            preparedDeleteStatement.executeUpdate();
+            preparedDeleteStatement.close();
+            dbConnection.commit();
+        } catch (Exception e) {
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            return false;
+        }
+        return true;
     }
 
     @Override
     public boolean insertAccount(Account newAccount) throws AccountException {
-        String insertUserStatement = "INSERT INTO accounts (name, email, password) "
-                                    + "VALUES (?, ?, ?);";
+        String insertUserStatement = "INSERT INTO Accounts (name, email, passwordHash, tripData) "
+                                    + "VALUES (?, ?, ?, ?);";
         try {
             PreparedStatement preparedInsertStatement = dbConnection.prepareStatement(insertUserStatement);
             preparedInsertStatement.setString(1, newAccount.getName());
             preparedInsertStatement.setString(2, newAccount.getEmail());
             preparedInsertStatement.setString(3, newAccount.getPasswordHash());
+            try {
+                preparedInsertStatement.setString(4, newAccount.getTripData().toString());
+            } catch (Exception e) {
+                System.out.println("HERE2");
+            }
             preparedInsertStatement.executeUpdate();
             preparedInsertStatement.close();
             dbConnection.commit();
             return true;
         } catch (Exception e) {
-            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            System.err.println(e.getClass().getName() + ": " + e.getMessage() );
             System.exit(0);
         }
         return false;
@@ -69,6 +93,22 @@ public class SqlliteAccountDAO implements AccountDAO {
 
     @Override
     public boolean updateAccount(Account updatedAccount) throws AccountException {
+        String updateUserStatement = "UPDATE Accounts SET email = ?, passwordHash = ?, tripData = ?" +
+                                     "WHERE name = ?";
+        try {
+            PreparedStatement preparedUpdateStatement = dbConnection.prepareStatement(updateUserStatement);
+            preparedUpdateStatement.setString(1, updatedAccount.getEmail());
+            preparedUpdateStatement.setString(2, updatedAccount.getPasswordHash());
+            preparedUpdateStatement.setString(3, updatedAccount.getTripData().getAsString());
+            preparedUpdateStatement.setString(4, updatedAccount.getName());
+            preparedUpdateStatement.executeUpdate();
+            preparedUpdateStatement.close();
+            dbConnection.commit();
+            return true;
+        } catch (Exception e) {
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            System.exit(0);
+        }
         return false;
     }
 }
