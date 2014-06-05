@@ -26,13 +26,13 @@
 
     <!-- End tool bar-->
 
-
     <!-- Start content-->
         </br>
         </br>
         </br>
         </br>
         </br>
+<<<<<<< HEAD
 
     <div id="login" class="leftAligned" >
         <form method="post" action="#">
@@ -40,10 +40,20 @@
             <input class="username" type="text" name="Username" placeholder="Username or email">
             </br>
             <input class="password" type="text" name="Password" placeholder="Password">
+=======
+        <form class="centered" method="post" action="login">
+            <h3> User Name </h3>
+            <input type="text" name="Username">
+            </br>
+            </br>
+            <h3> Password </h3>
+            <input type="password" name="Password">
+>>>>>>> FETCH_HEAD
             </br>
             </br>
             <input type="submit" value="Login">
         </form>
+<<<<<<< HEAD
         </br>
         </br>
 
@@ -65,6 +75,13 @@
         </br>
 
     </div>
+=======
+        <%= request.getAttribute("error") %>
+
+        <form class="centered" method="post" action="register">
+        <input type="submit" value="make test account">
+        </form>
+>>>>>>> FETCH_HEAD
 
 
     <!-- End content-->
