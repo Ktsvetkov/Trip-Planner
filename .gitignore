@@ -1,3 +1,6 @@
 /target/*
 /out/*
 /.idea/*
+src/main/java/edu/gatech/cs2340/trip/model/AccountManagementModel.java
+
+src/main/java/edu/gatech/cs2340/trip/model/UpdateAccountManger.java
