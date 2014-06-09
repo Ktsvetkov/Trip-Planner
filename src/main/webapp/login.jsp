@@ -36,9 +36,9 @@
     <div id="login" class="centered" >
         <form method="post" action="/login">
             <h3>Login</h3>
-            <input class="username" type="text" name="Username" placeholder="Username or email">
+            <input type="text" name="Username" placeholder="Username or email">
             </br>
-            <input class="password" type="text" name="Password" placeholder="Password">
+            <input type="text" name="Password" placeholder="Password">
             </br>
             <input type="submit" value="login">
             </br>

@@ -37,11 +37,11 @@
     <div id="login" class="centered" >
         <form method="post" action="/register">
             <h3>Register</h3>
-            <input class="username" type="text" name="Username" placeholder="Username">
+            <input type="text" name="Username" placeholder="Username">
             </br>
-            <input class="username" type="text" name="Email" placeholder="Email">
+            <input type="text" name="Email" placeholder="Email">
             </br>
-            <input class="password" type="text" name="Password" placeholder="Password">
+            <input type="text" name="Password" placeholder="Password">
             </br>
             <input type="submit" value="Register">
             </br>
