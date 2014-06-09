@@ -73,7 +73,8 @@ public class AccountManagementServlet extends HttpServlet {
             req.setAttribute("error", "The credentials supplied do not match");
         }
 
-        getServletContext().getRequestDispatcher("/login.jsp").forward(req,resp);
+        RequestDispatcher reqDispatcher = getServletConfig().getServletContext().getRequestDispatcher("/main.jsp");
+        reqDispatcher.forward(req, resp);
     }
 
     private void handleRegistration(HttpServletRequest req, HttpServletResponse resp)
