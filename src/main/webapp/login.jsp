@@ -32,9 +32,9 @@
         </br>
         </br>
         </br>
-
-    <div id="login" class="leftAligned" >
-        <form method="post" action="#">
+    <center>
+    <div id="login" class="centered" >
+        <form method="post" action="/login">
             <h3>Login</h3>
             <input class="username" type="text" name="Username" placeholder="Username or email">
             </br>
@@ -44,24 +44,7 @@
             </br>
         </form>
     </div>
-
-    <div id="signup" class="rightAligned" >
-        <form method="post" action="#">
-            <h3>Sign Up</h3>
-            <input class="username" type="text" name="Email" placeholder="Email">
-            </br>
-            <input class="username" type="text" name="Username" placeholder="Username">
-            </br>
-            <input class="password" type="text" name="Password" placeholder="Password">
-            </br>
-            </br>
-            <input type="submit" value="Sign Up">
-        </form>
-        </br>
-        </br>
-
-    </div>
-
+    </center>
 
     <!-- End content-->
 
