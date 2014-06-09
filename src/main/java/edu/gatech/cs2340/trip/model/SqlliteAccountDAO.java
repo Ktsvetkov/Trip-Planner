@@ -13,7 +13,8 @@ public class SqlliteAccountDAO implements AccountDAO {
     public SqlliteAccountDAO() {
         try {
             Class.forName("org.sqlite.JDBC");
-            dbConnection = DriverManager.getConnection("jdbc:sqlite:Accounts.db");
+            dbConnection = DriverManager.getConnection("jdbc:sqlite:" +
+                    System.getenv("CATALINA_HOME")+"/webapps/Accounts.db");
             dbConnection.setAutoCommit(false);
             String createAccountTableQuery = "CREATE TABLE IF NOT EXISTS accounts"
                     + "  (name TEXT,"
@@ -78,7 +79,6 @@ public class SqlliteAccountDAO implements AccountDAO {
             try {
                 preparedInsertStatement.setString(4, newAccount.getTripData().toString());
             } catch (Exception e) {
-                System.out.println("HERE2");
             }
             preparedInsertStatement.executeUpdate();
             preparedInsertStatement.close();
