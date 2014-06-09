@@ -31,10 +31,6 @@ public class AccountManagementServlet extends HttpServlet {
             handleLogin(request, response);
         } else if(request.getRequestURI().equals("/trip/register")) {
             handleRegistration(request, response);
-        } else {
-            RequestDispatcher dispatcher =
-                    getServletContext().getRequestDispatcher("/accounts.jsp");
-            dispatcher.forward(request, response);
         }
     }
 
@@ -42,10 +38,7 @@ public class AccountManagementServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request,
                          HttpServletResponse response)
             throws IOException, ServletException {
-        request.setAttribute("test", "Asdas");
-        RequestDispatcher dispatcher =
-                getServletContext().getRequestDispatcher("/login.jsp");
-        dispatcher.forward(request,response);
+        return;
     }
 
     @Override
