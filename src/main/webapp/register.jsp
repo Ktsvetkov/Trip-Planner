@@ -12,15 +12,16 @@
 
     <div id="nav">
         <ul>
-            <li style="background-color: #fff"><a href="#"><font color="#c00">Login</a></font></li>
-            <li><a href="register.jsp">Register</a></li>
+            <li><a href="login.jsp"><font color="#c00">Login</a></font></li>
+            <li  style="background-color: #fff"><a href="#">Register</a></li>
             <li><a href="#">About Us</a></li>
 
             <li>
                 <form id="tfnewsearch" method="get" action="#">
                     <input type="text" class="tftextinput" name="q" size="21" maxlength="120">
                     <input type="submit" value="search" class="tfbutton">
-                </form></li>
+                </form>
+            </li>
         </ul>
     </div>
 
@@ -34,13 +35,15 @@
         </br>
     <center>
     <div id="login" class="centered" >
-        <form method="post" action="/login">
-            <h3>Login</h3>
-            <input class="username" type="text" name="Username" placeholder="Username or email">
+        <form method="post" action="/register">
+            <h3>Register</h3>
+            <input class="username" type="text" name="Username" placeholder="Username">
+            </br>
+            <input class="username" type="text" name="Email" placeholder="Email">
             </br>
             <input class="password" type="text" name="Password" placeholder="Password">
             </br>
-            <input type="submit" value="login">
+            <input type="submit" value="Register">
             </br>
         </form>
     </div>
