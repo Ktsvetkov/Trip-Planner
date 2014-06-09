@@ -12,6 +12,9 @@ public class LoginManager {
     public static Account attemptLogin(String accountName, String passwordPlaintext)
             throws AccountException, AccountNotFoundException {
         Account matchedAccount;
+        if (accountName == null || passwordPlaintext == null) {
+            return null;
+        }
         matchedAccount = database.getAccount(accountName);
         try {
             if (PasswordHash.validatePassword(passwordPlaintext, matchedAccount.getPasswordHash())) {

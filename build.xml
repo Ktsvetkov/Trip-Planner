@@ -70,7 +70,8 @@
 
         <!-- compile -->
         <mkdir dir="${build.home}/WEB-INF/classes"/>
-        <javac srcdir="${src.main}/java"
+        <javac debug="true" debuglevel="lines,vars,source"
+                srcdir="${src.main}/java"
                destdir="${build.home}/WEB-INF/classes">
             <classpath refid="compile.classpath"/>
         </javac>

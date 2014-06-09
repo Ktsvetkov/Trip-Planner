@@ -34,7 +34,7 @@
         </br>
     <center>
     <div id="login" class="centered" >
-        <form method="post" action="/login">
+        <form method="post" action="login">
             <h3>Login</h3>
             <input type="text" name="Username" placeholder="Username or email">
             </br>
