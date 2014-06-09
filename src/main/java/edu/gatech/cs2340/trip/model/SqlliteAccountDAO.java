@@ -78,7 +78,6 @@ public class SqlliteAccountDAO implements AccountDAO {
             try {
                 preparedInsertStatement.setString(4, newAccount.getTripData().toString());
             } catch (Exception e) {
-                System.out.println("HERE2");
             }
             preparedInsertStatement.executeUpdate();
             preparedInsertStatement.close();
