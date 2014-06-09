@@ -43,6 +43,7 @@
             </br>
             <input type="text" name="Password" placeholder="Password">
             </br>
+            </br>
             <input type="submit" value="Register">
             </br>
         </form>
