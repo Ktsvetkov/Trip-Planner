@@ -38,7 +38,7 @@
             <h3>Login</h3>
             <input type="text" name="Username" placeholder="Username or email">
             </br>
-            <input type="text" name="Password" placeholder="Password">
+            <input type="password" name="Password" placeholder="Password">
             </br>
         </br>
             <input type="submit" value="login">
