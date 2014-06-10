@@ -1,6 +1,7 @@
 package edu.gatech.cs2340.trip.model;
 
-import java.security.NoSuchAlgorithmException;
+import edu.gatech.cs2340.trip.util.InputValidator;
+import edu.gatech.cs2340.trip.util.PasswordHash;
 
 /**
  * Created by dheavern on 6/4/14.

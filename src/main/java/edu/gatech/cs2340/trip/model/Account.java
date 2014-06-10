@@ -2,6 +2,7 @@ package edu.gatech.cs2340.trip.model;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import edu.gatech.cs2340.trip.util.PasswordHash;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;

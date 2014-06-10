@@ -1,5 +1,7 @@
 package edu.gatech.cs2340.trip.model;
 
+import edu.gatech.cs2340.trip.util.PasswordHash;
+
 import javax.security.auth.login.AccountException;
 import javax.security.auth.login.AccountNotFoundException;
 

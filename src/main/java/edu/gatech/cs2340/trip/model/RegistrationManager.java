@@ -1,9 +1,9 @@
 package edu.gatech.cs2340.trip.model;
 
+import edu.gatech.cs2340.trip.util.InputValidator;
+
 import javax.security.auth.login.AccountException;
 import javax.security.auth.login.CredentialException;
-import javax.xml.bind.ValidationEvent;
-import java.util.Vector;
 
 /**
  * Created by dheavern on 6/4/14.

@@ -1,4 +1,4 @@
-package edu.gatech.cs2340.trip.model;
+package edu.gatech.cs2340.trip.util;
 
 /*
  * Password Hashing With PBKDF2 (http://crackstation.net/hashing-security.htm).
