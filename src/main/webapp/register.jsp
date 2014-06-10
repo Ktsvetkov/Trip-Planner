@@ -12,8 +12,8 @@
 
     <div id="nav">
         <ul>
-            <li><a href="/trip/login.jsp"><font color="#c00">Login</a></font></li>
-            <li  style="background-color: #fff"><a href="#">Register</a></li>
+            <li><a href="/trip/login.jsp">Login</a></li>
+            <li  style="background-color: #fff"><a href="#"><font color="#c00">Register</a></font></li>
             <li><a href="#">About Us</a></li>
 
             <li>
