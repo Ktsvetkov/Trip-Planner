@@ -15,6 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet(urlPatterns =
         {"/login",
@@ -45,6 +46,7 @@ public class AccountManagementServlet extends HttpServlet {
         if (request.getRequestURI().equals("/trip/login")) {
             if (request.getSession().getAttribute("account") != null) {
                 response.sendRedirect("/trip/main.jsp");
+                return;
             } else {
                 requestDispatcher = getServletContext().getRequestDispatcher("/login.jsp");
             }
@@ -52,9 +54,10 @@ public class AccountManagementServlet extends HttpServlet {
             requestDispatcher = getServletContext().getRequestDispatcher("/register.jsp");
         } else if(request.getRequestURI().equals("/trip/logout")) {
             request.getSession().setAttribute("account", null);
-            requestDispatcher = getServletContext().getRequestDispatcher("/login.jsp");
+            response.sendRedirect("/trip/login");
+            return;
         }
-        requestDispatcher.forward(request, response);
+        requestDispatcher.forward(request,response);
     }
 
     @Override
