@@ -1,11 +1,10 @@
 package edu.gatech.cs2340.trip.model;
 
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import javax.security.auth.login.AccountException;
 import java.sql.*;
 
 /**
+ * An Sqllite DAO for user accounts
  * Created by dheavern on 6/3/14.
  */
 public class SqlliteAccountDAO implements AccountDAO {
@@ -13,9 +12,11 @@ public class SqlliteAccountDAO implements AccountDAO {
     public SqlliteAccountDAO() {
         try {
             Class.forName("org.sqlite.JDBC");
-            dbConnection = DriverManager.getConnection("jdbc:sqlite:" +
-                    System.getenv("CATALINA_HOME")+"/webapps/Accounts.db");
-            dbConnection.setAutoCommit(false);
+            if (dbConnection == null) {
+                dbConnection = DriverManager.getConnection("jdbc:sqlite:" +
+                        System.getenv("CATALINA_HOME")+"/webapps/Accounts.db");
+                dbConnection.setAutoCommit(false);
+            }
             String createAccountTableQuery = "CREATE TABLE IF NOT EXISTS accounts"
                     + "  (name TEXT,"
                     + "   email TEXT,"
@@ -25,6 +26,7 @@ public class SqlliteAccountDAO implements AccountDAO {
             sqlStatement.execute(createAccountTableQuery);
             dbConnection.commit();
         } catch (Exception e) {
+            System.err.println(e.getMessage());
         }
         System.out.println("Opened database successfully");
 
@@ -79,6 +81,7 @@ public class SqlliteAccountDAO implements AccountDAO {
             try {
                 preparedInsertStatement.setString(4, newAccount.getTripData().toString());
             } catch (Exception e) {
+                System.out.println(e.getMessage());
             }
             preparedInsertStatement.executeUpdate();
             preparedInsertStatement.close();
