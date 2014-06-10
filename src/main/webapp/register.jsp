@@ -48,6 +48,11 @@
             <input type="submit" value="Register">
             </br>
         </form>
+        <% if (request.getAttribute("error") != null) { %>
+        <div class="error">
+            <%= request.getAttribute("error") %>
+        </div>
+         <% } %>
     </div>
     </center>
 

@@ -78,8 +78,10 @@ public class AccountManagementServlet extends HttpServlet {
             req.getSession().setAttribute("account", userAccount);
             resp.sendRedirect("/trip/main.jsp");
             return;
+        } else {
+            req.setAttribute("error", "The supplied credentials were invalid");
+            getServletContext().getRequestDispatcher("/login.jsp").forward(req, resp);
         }
-        getServletContext().getRequestDispatcher("/login.jsp").forward(req, resp);
     }
 
     private void handleRegistration(HttpServletRequest req, HttpServletResponse resp)

@@ -44,6 +44,11 @@
             <input type="submit" value="login">
             </br>
         </form>
+        <% if (request.getAttribute("error") != null) { %>
+        <div class="error">
+            <%= request.getAttribute("error") %>
+        </div>
+        <% } %>
     </div>
     </center>
 
