@@ -7,6 +7,8 @@
     <% } else {
       	Account userAccount = (Account) request.getSession().getAttribute("account");
       	out.println("You are logged in as: " + userAccount.getName());
+        out.println("</br><a href=\"/trip/logout\">logout<a>");
     } %>
+
 </body>
 </html>
