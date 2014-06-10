@@ -9,7 +9,7 @@ import java.sql.*;
  * Created by dheavern on 6/3/14.
  */
 public class SqlliteAccountDAO implements AccountDAO {
-    private Connection dbConnection;
+    private static Connection dbConnection;
     public SqlliteAccountDAO() {
         try {
             Class.forName("org.sqlite.JDBC");
