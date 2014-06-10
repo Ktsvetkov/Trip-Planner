@@ -12,7 +12,7 @@
 
     <div id="nav">
         <ul>
-            <li><a href="login.jsp"><font color="#c00">Login</a></font></li>
+            <li><a href="login"><font color="#c00">Login</a></font></li>
             <li  style="background-color: #fff"><a href="#">Register</a></li>
             <li><a href="#">About Us</a></li>
 
