@@ -29,8 +29,6 @@ public class AccountManagementServlet extends HttpServlet {
                           HttpServletResponse response)
         throws IOException, ServletException {
 
-        UserManagement.createUser("kamen","kamen","kamen");
-
         if (request.getRequestURI().equals("/trip/login")) {
             handleLogin(request, response);
         } else if(request.getRequestURI().equals("/trip/register")) {

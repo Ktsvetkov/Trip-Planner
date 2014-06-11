@@ -40,8 +40,6 @@ public class UserManagement {
             return false;
         } else {
 
-            try {
-
             FileWriter writer = new FileWriter(userFile, true);
 
             PrintWriter output = new PrintWriter(writer);
@@ -50,18 +48,8 @@ public class UserManagement {
             output.println(email);
             output.println(passwordHash);
             output.close();
-
-            } catch (FileNotFoundException e) {
-
-            } catch (UnsupportedEncodingException e) {
-
-            } catch (IOException e) {
-
-            }
-
-
+            return true;
         }
-        return true;
 
     }
 
