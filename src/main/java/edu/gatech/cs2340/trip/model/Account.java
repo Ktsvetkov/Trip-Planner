@@ -23,7 +23,7 @@ public class Account {
         try {
             this.tripData = new JsonObject();
         } catch (Exception e) {
-            System.out.println("here1");
+            System.out.println(e.getMessage());
         }
         setPassword(password);
     }
@@ -61,9 +61,9 @@ public class Account {
         try {
             this.passwordHash = PasswordHash.createHash(password);
         } catch (NoSuchAlgorithmException e) {
-            System.out.println("Error Hashing");
+            System.out.println("Error Hashing " + e.getMessage());
         } catch (InvalidKeySpecException e) {
-            System.out.println("Error Hashing");
+            System.out.println("Error Hashing " + e.getMessage());
         }
     }
 
