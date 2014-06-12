@@ -1,4 +1,5 @@
 <%@ page import="java.util.*" %>
+<<<<<<< HEAD
 
 <html>
     <head>
@@ -32,6 +33,14 @@
 
     <!-- End tool bar-->
 
+=======
+    <%
+    if(request.getSession().getAttribute("account") == null) {
+        response.sendRedirect("/trip/login");
+    }
+     %>
+    <jsp:include page="header.jsp" />
+>>>>>>> 70953e0f472568e28e8d3282e4c9a6b1858cd8f2
     <!-- Start content-->
         </br>
         </br>
@@ -39,17 +48,23 @@
         </br>
         </br>
     <center>
+<<<<<<< HEAD
     <div id="login" class="centered">
+=======
+    <div id="update" class="centered">
+        <h3>Update Account Information</h3>
+        </br>
+        <h4> Update Email </h4>
+>>>>>>> 70953e0f472568e28e8d3282e4c9a6b1858cd8f2
         <form method="post" action="update">
-            <h3>Update Account Information</h3>
-            </br>
-            <h4>Enter Old Email Address</h4>
-            <input type="text" name="OldEmail" placeholder="Old Email">
+            <input type="hidden" name="Action" value="email">
             <h4>Enter New Email Address</h4>
             <input type="text" name="NewEmail" placeholder="New Email">
-            </br>
-            <input type="text" name="ConfirmEmail" placeholder="Confirm New Email">
-            </br>
+            <input type="submit" value="Change Email">
+        </form>
+        <h4> Change Password </h4>
+        <form method="post" action="update">
+            <input type="hidden" name="Action" value="password">
             <h4>Enter Old Password</h4>
             <input type="password" name="OldPassword" placeholder="Old Password">
             <h4>Enter New Password</h4>

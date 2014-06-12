@@ -1,5 +1,6 @@
 <%@ page import="java.util.*" %>
 
+<<<<<<< HEAD
 <html>
     <head>
         <title>Toto Web APP</title>
@@ -28,6 +29,9 @@
     </div>
 
     <!-- End tool bar-->
+=======
+    <jsp:include page="header.jsp" />
+>>>>>>> 70953e0f472568e28e8d3282e4c9a6b1858cd8f2
 
     <!-- Start content-->
         </br>
@@ -43,9 +47,10 @@
             </br>
             <input type="password" name="Password" placeholder="Password">
             </br>
-        </br>
-            <input type="submit" value="login">
+            <input type="submit" value="Login">
             </br>
+            <a href="/trip/register.jsp">New User?</a>
+
         </form>
         <% if (request.getAttribute("error") != null) { %>
         <div class="error">
