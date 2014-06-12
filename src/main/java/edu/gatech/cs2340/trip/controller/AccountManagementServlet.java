@@ -10,6 +10,7 @@ import javax.security.auth.login.AccountException;
 import javax.security.auth.login.AccountNotFoundException;
 import javax.security.auth.login.CredentialException;
 import javax.servlet.RequestDispatcher;
+import javax.servlet.Servlet;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -33,6 +34,8 @@ public class AccountManagementServlet extends HttpServlet {
             handleLogin(request, response);
         } else if(request.getRequestURI().equals("/trip/register")) {
             handleRegistration(request, response);
+        } else if(request.getRequestURI().equals("/trip/update")) {
+            handleUpdates(request, response);
         }
     }
 
@@ -107,5 +110,10 @@ public class AccountManagementServlet extends HttpServlet {
         } else {
             getServletContext().getRequestDispatcher("/register.jsp").forward(req, resp);
         }
+    }
+
+    private void handleUpdates(HttpServletRequest req, HttpServletResponse resp)
+            throws IOException, ServletException {
+
     }
 }
