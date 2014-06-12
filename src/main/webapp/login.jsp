@@ -3,6 +3,9 @@
 <html>
     <head>
         <title>Toto Web APP</title>
+        <% if (request.getSession().getAttribute("account") != null) { %>
+        <meta http-equiv="refresh" content="0; url=main.jsp" />
+        <% } %>
         <link rel="stylesheet" type="text/css" href="stylesheets/main.css">
     </head>
 
@@ -12,9 +15,9 @@
 
     <div id="nav">
         <ul>
+            <li><a href="/trip/main.jsp">Home</a></li>
             <li style="background-color: #fff"><a href="#"><font color="#c00">Login</a></font></li>
             <li><a href="/trip/register.jsp">Register</a></li>
-            <li><a href="#">About Us</a></li>
 
             <li>
                 <form id="tfnewsearch" method="get" action="#">
