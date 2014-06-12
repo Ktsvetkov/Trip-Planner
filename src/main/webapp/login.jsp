@@ -1,6 +1,5 @@
 <%@ page import="java.util.*" %>
 
-<<<<<<< HEAD
 <html>
     <head>
         <title>Toto Web APP</title>
@@ -29,9 +28,6 @@
     </div>
 
     <!-- End tool bar-->
-=======
-    <jsp:include page="header.jsp" />
->>>>>>> 70953e0f472568e28e8d3282e4c9a6b1858cd8f2
 
     <!-- Start content-->
         </br>

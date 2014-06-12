@@ -1,5 +1,4 @@
 <%@ page import="java.util.*" %>
-<<<<<<< HEAD
 
 <html>
     <head>
@@ -33,14 +32,6 @@
 
     <!-- End tool bar-->
 
-=======
-    <%
-    if(request.getSession().getAttribute("account") == null) {
-        response.sendRedirect("/trip/login");
-    }
-     %>
-    <jsp:include page="header.jsp" />
->>>>>>> 70953e0f472568e28e8d3282e4c9a6b1858cd8f2
     <!-- Start content-->
         </br>
         </br>
