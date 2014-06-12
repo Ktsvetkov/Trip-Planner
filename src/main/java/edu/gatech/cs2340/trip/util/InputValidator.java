@@ -18,6 +18,8 @@ public class InputValidator {
         return validEmail.matcher(email).matches();
     }
 
+    public static boolean isValidPassword(String password) { return password.length() > 5; }
+
     public static String stripXss(String input) {
         Pattern[] patterns = new Pattern[]{
                 // Script fragments
