@@ -119,7 +119,7 @@ public class SqlliteAccountDAO implements AccountDAO {
             preparedUpdateStatement = dbConnection.prepareStatement(updateUserStatement);
             preparedUpdateStatement.setString(1, updatedAccount.getEmail());
             preparedUpdateStatement.setString(2, updatedAccount.getPasswordHash());
-            preparedUpdateStatement.setString(3, updatedAccount.getTripData().getAsString());
+            preparedUpdateStatement.setString(3, updatedAccount.getTripData().toString());
             preparedUpdateStatement.setString(4, updatedAccount.getName());
             preparedUpdateStatement.executeUpdate();
             dbConnection.commit();
