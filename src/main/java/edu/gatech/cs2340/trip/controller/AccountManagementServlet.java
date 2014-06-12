@@ -21,7 +21,8 @@ import javax.servlet.http.HttpSession;
 @WebServlet(urlPatterns =
         {"/login",
          "/register",
-         "/logout"
+         "/logout",
+         "/update"
         })
 public class AccountManagementServlet extends HttpServlet {
 
@@ -53,6 +54,8 @@ public class AccountManagementServlet extends HttpServlet {
             }
         } else if(request.getRequestURI().equals("/trip/register")) {
             requestDispatcher = getServletContext().getRequestDispatcher("/register.jsp");
+        } else if(request.getRequestURI().equals("/trip/update")) {
+            requestDispatcher = getServletContext().getRequestDispatcher("/update.jsp");
         } else if(request.getRequestURI().equals("/trip/logout")) {
             request.getSession().setAttribute("account", null);
             response.sendRedirect("/trip/login");
@@ -114,6 +117,30 @@ public class AccountManagementServlet extends HttpServlet {
 
     private void handleUpdates(HttpServletRequest req, HttpServletResponse resp)
             throws IOException, ServletException {
-
+        Account userAccount = (Account) req.getSession().getAttribute("account");
+        if (userAccount == null) {
+            resp.sendRedirect("/trip/login");
+            return;
+        }
+        if (req.getParameter("Action").equals("email")) {
+            String newEmail = req.getParameter("NewEmail");
+            try {
+                UpdateAccountManger.updateEmail(userAccount, newEmail);
+                req.setAttribute("msg", "Your email was updated successfully");
+            } catch (AccountException e) {
+                req.setAttribute("error", e.getMessage());
+            }
+        } else if (req.getParameter("Action").equals("password")) {
+            String oldPassword = req.getParameter("OldPassword");
+            String newPassword = req.getParameter("NewPassword");
+            String confirmPassword = req.getParameter("ConfirmPassword");
+            try {
+                UpdateAccountManger.updatePassword(userAccount, oldPassword, newPassword, confirmPassword);
+                req.setAttribute("msg", "Your password was updated successfully");
+            } catch (AccountException e) {
+                req.setAttribute("error", e.getMessage());
+            }
+        }
+        getServletContext().getRequestDispatcher("/update.jsp").forward(req, resp);
     }
 }

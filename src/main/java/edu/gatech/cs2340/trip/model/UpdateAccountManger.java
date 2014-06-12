@@ -4,6 +4,9 @@ import edu.gatech.cs2340.trip.util.InputValidator;
 import edu.gatech.cs2340.trip.util.PasswordHash;
 
 import javax.security.auth.login.AccountException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 
 /**
  * Created by dheavern on 6/4/14.
@@ -11,7 +14,7 @@ import javax.security.auth.login.AccountException;
 public class UpdateAccountManger {
     private static AccountDAO database = new SqlliteAccountDAO();
 
-    public void updateEmail(Account account,String newEmail) throws AccountException {
+    public static void updateEmail(Account account,String newEmail) throws AccountException {
         if (!InputValidator.isValidEmail(newEmail)) {
             throw new AccountException("The supplied email is invalid");
         }
@@ -32,13 +35,15 @@ public class UpdateAccountManger {
         String oldPasswordHash = account.getPasswordHash();
         try {
             if (!PasswordHash.validatePassword(oldPassword, oldPasswordHash)) {
-                throw new AccountException("Passwords must be 3-15 alpha-numeric characters");
+                throw new AccountException("Your old password is not correct");
             }
-        } catch (Exception e) {
-            throw new AccountException("There was an internal error");
+        } catch (NoSuchAlgorithmException e) {
+            throw new AccountException("There was an internal error" + e.getMessage());
+        } catch (InvalidKeySpecException e) {
+            throw new AccountException("There was an internal error" + e.getMessage());
         }
-        if (!newPassword.equals(oldPassword)) {
-            throw new AccountException("The password you entered is not correct");
+        if (!InputValidator.isValidPassword(newPassword)) {
+            throw new AccountException("Your password must be atleast 5 characters long");
         }
         if (!newPassword.equals(confirmPassword)) {
             throw new AccountException("Your passwords do not match");

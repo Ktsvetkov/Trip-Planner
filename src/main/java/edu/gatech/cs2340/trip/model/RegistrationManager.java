@@ -19,6 +19,8 @@ public class RegistrationManager {
             throw new AccountException("You must enter an email");
         } else if(password == null || password == "") {
             throw new AccountException("You must enter a password");
+        } else if (!InputValidator.isValidPassword(password)) {
+            throw new AccountException("Your password must be atleast 5 characters long");
         } else if(confirmedPassword == null || confirmedPassword == "") {
             throw new AccountException("You must confirm your password");
         } else if (database.getAccount(name) != null) {
