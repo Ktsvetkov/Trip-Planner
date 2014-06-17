@@ -29,7 +29,10 @@ public class Account {
     }
 
     //Note the password is pre-hashed
-    public Account(String name, String email,  String passwordHash, String tripData) {
+    public Account(String name,
+                   String email,
+                   String passwordHash,
+                   String tripData) {
         this.name = name;
         this.email = email;
         this.passwordHash = passwordHash;

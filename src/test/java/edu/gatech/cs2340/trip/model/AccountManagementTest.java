@@ -13,7 +13,7 @@ public class AccountManagementTest {
         try {
             System.out.println(LoginManager.attemptLogin("test", "test") != null);
         } catch (Exception e) {
-
+            System.out.println(e.getMessage());
         }
         System.out.println("Done");
     }

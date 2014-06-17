@@ -1,8 +1,12 @@
 package edu.gatech.cs2340.trip.model;
 
 import javax.security.auth.login.AccountException;
-import javax.xml.transform.Result;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.PreparedStatement;
 
 /**
  * An Sqllite DAO for user accounts
@@ -10,10 +14,12 @@ import java.sql.*;
  */
 public class SqlliteAccountDAO implements AccountDAO {
     private Connection dbConnection;
+
     public SqlliteAccountDAO() {
         try {
             openDb();
-            String createAccountTableQuery = "CREATE TABLE IF NOT EXISTS accounts"
+            String createAccountTableQuery =
+                    "CREATE TABLE IF NOT EXISTS accounts"
                     + "  (name TEXT,"
                     + "   email TEXT,"
                     + "   passwordHash TEXT,"
