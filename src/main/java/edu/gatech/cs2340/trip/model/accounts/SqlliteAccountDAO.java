@@ -1,4 +1,8 @@
-package edu.gatech.cs2340.trip.model;
+package edu.gatech.cs2340.trip.model.accounts;
+
+import edu.gatech.cs2340.trip.model.Itinerary;
+import edu.gatech.cs2340.trip.model.accounts.Account;
+import edu.gatech.cs2340.trip.model.accounts.AccountDAO;
 
 import javax.security.auth.login.AccountException;
 import java.sql.Connection;
@@ -50,7 +54,7 @@ public class SqlliteAccountDAO implements AccountDAO {
             if (accountQueryResults.next()) {
                 return new Account(accountQueryResults.getString("name"), accountQueryResults.getString("email"),
                         accountQueryResults.getString("passwordHash"),
-                        accountQueryResults.getString("tripData"));
+                        new Itinerary(accountQueryResults.getString("tripData")));
             }
         } catch (Exception e) {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );

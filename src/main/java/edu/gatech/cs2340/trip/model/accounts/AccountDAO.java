@@ -1,4 +1,4 @@
-package edu.gatech.cs2340.trip.model;
+package edu.gatech.cs2340.trip.model.accounts;
 
 import javax.security.auth.login.AccountException;
 

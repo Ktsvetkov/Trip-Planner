@@ -3,10 +3,10 @@ package edu.gatech.cs2340.trip.controller;
 /**
  * Created by dheavern on 6/3/14.
  */
-import edu.gatech.cs2340.trip.model.RegistrationManager;
-import edu.gatech.cs2340.trip.model.LoginManager;
-import edu.gatech.cs2340.trip.model.UpdateAccountManger;
-import edu.gatech.cs2340.trip.model.Account;
+import edu.gatech.cs2340.trip.model.accounts.RegistrationManager;
+import edu.gatech.cs2340.trip.model.accounts.LoginManager;
+import edu.gatech.cs2340.trip.model.accounts.UpdateAccountManger;
+import edu.gatech.cs2340.trip.model.accounts.Account;
 
 
 import java.io.IOException;

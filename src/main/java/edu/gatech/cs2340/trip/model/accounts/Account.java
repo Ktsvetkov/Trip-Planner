@@ -1,7 +1,6 @@
-package edu.gatech.cs2340.trip.model;
+package edu.gatech.cs2340.trip.model.accounts;
 
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import edu.gatech.cs2340.trip.model.Itinerary;
 import edu.gatech.cs2340.trip.util.PasswordHash;
 
 import java.security.NoSuchAlgorithmException;
@@ -15,13 +14,13 @@ public class Account {
     private String name;
     private String email;
     private String passwordHash;
-    private JsonObject tripData;
+    private Itinerary tripData;
 
     public Account(String name, String email, String password) {
         this.name = name;
         this.email = email;
         try {
-            this.tripData = new JsonObject();
+            this.tripData = new Itinerary();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -32,16 +31,11 @@ public class Account {
     public Account(String name,
                    String email,
                    String passwordHash,
-                   String tripData) {
+                   Itinerary tripData) {
         this.name = name;
         this.email = email;
         this.passwordHash = passwordHash;
-        if (tripData == null) {
-            this.tripData = new JsonObject();
-        } else {
-            JsonParser tripDataParser = new JsonParser();
-            this.tripData = tripDataParser.parse(tripData).getAsJsonObject();
-        }
+        this.tripData = tripData;
     }
 
     public String getName() {
@@ -70,11 +64,11 @@ public class Account {
         }
     }
 
-    public JsonObject getTripData() {
+    public Itinerary getTripData() {
         return tripData;
     }
 
-    public void setTripData(JsonObject tripData) {
+    public void setTripData(Itinerary tripData) {
         this.tripData = tripData;
     }
 
